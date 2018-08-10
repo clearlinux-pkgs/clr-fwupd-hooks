@@ -1,0 +1,8 @@
+[Unit]
+Description=Auto-firmware update
+BindsTo=update-triggers.target
+Before=motd-trigger.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/clr-fwupd-update

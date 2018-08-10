@@ -1,0 +1,18 @@
+#!/bin/bash
+
+tfile=$(mktemp fwupd-output.XXXXX)
+fwupdmgr update --offline &> "$tfile"
+if [ $? -ne 0 ]; then
+    rm "$tfile"
+    exit -1
+fi
+
+while IFS='' read -r line; do
+    if ! echo "$line" | grep -q "^No upgrades"; then
+        [ ! -d /run/motd.d ] && mkdir -p /run/motd.d
+        echo "* A firmware update is available: you may wish to reboot the system." > /run/motd.d/clr-firmware.motd
+        break
+    fi
+done < "$tfile"
+
+rm "$tfile"
