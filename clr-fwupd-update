@@ -1,9 +1,9 @@
 #!/bin/bash
 
-tfile=$(mktemp fwupd-output.XXXXX)
+tfile=$(mktemp /tmp/clr-fwupd-update-fwupd-output.XXXXX)
 fwupdmgr update --offline &> "$tfile"
 if [ $? -ne 0 ]; then
-    rm "$tfile"
+    rm -f "$tfile"
     exit -1
 fi
 
@@ -15,4 +15,4 @@ while IFS='' read -r line; do
     fi
 done < "$tfile"
 
-rm "$tfile"
+rm -f "$tfile"
