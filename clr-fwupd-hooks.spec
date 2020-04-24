@@ -1,13 +1,14 @@
 Name:           clr-fwupd-hooks
 Version:        1
-Release:        5
+Release:        6
 License:        Apache-2.0
 Summary:        Auto-update runner for fwupd
 Url:            https://clearlinux.org/
 Group:          base
 Source0:        clr-fwupd-update
 Source1:        clr-fwupd-update.service
-Requires:       fwupd
+
+# do not add `fwupd` as `Requires:` in here.
 
 %description
 Auto-update runner for fwupd
