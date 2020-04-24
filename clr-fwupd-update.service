@@ -3,6 +3,7 @@ Description=Auto-firmware update
 BindsTo=update-triggers.target
 Before=motd-trigger.service
 ConditionVirtualization=!container
+ConditionPathExists=/usr/bin/fwupdmgr
 
 [Service]
 Type=oneshot
